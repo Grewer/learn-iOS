@@ -1,4 +1,5 @@
 #import "SceneDelegate.h"
+#import "ViewController.h"
 
 @interface SceneDelegate ()
 
@@ -13,7 +14,6 @@
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 //    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     //self.window = [[UIWindow alloc] initWithWindowScene:(UIWindowScene *)scene];
     UIWindowScene *windowScene = (UIWindowScene *)scene;
        self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
@@ -22,10 +22,16 @@
     
     UITabBarController *tabbarController = [[UITabBarController alloc] init];
     
+    ViewController *viewControl = [[ViewController alloc] init];
     
-    UIViewController *controller1 = [[UIViewController alloc] init];
-    controller1.view.backgroundColor = [UIColor redColor];
-    controller1.tabBarItem.title = @"zhang1";
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewControl];
+    
+    
+    
+    
+//    UIViewController *controller1 = [[UIViewController alloc] init];
+//    controller1.view.backgroundColor = [UIColor redColor];
+    navigationController.tabBarItem.title = @"zhang1";
 //    controller1.tabBarItem.image = [UIImage imageNamed:<#(nonnull NSString *)#>];
 //    controller1.tabBarItem.selectedImage = [UIImage imageNamed:<#(nonnull NSString *)#>];
     // tabbar 假如是图片 应该这样做
@@ -44,7 +50,7 @@
     controller4.tabBarItem.title = @"zhang4";
     
     
-    [tabbarController setViewControllers: @[controller1,controller2,controller3,controller4]];
+    [tabbarController setViewControllers: @[navigationController,controller2,controller3,controller4]];
     
     
     self.window.rootViewController = tabbarController;

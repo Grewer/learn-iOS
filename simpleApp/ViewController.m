@@ -64,13 +64,19 @@
     [self.view addSubview:view];
     
     
-//    UIView *view2 = [[UIView alloc] init];
-//    view2.backgroundColor = [UIColor redColor];
-//    // frame 表示位置
-//    view2.frame = CGRectMake(150,250,500,400);
-//    [self.view addSubview:view2];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushController)];
+    
+    [view addGestureRecognizer:tapGesture];
+
 }
 
-
+-(void)pushController{
+    UIViewController *viewController = [[UIViewController alloc] init];
+    viewController.view.backgroundColor = [UIColor whiteColor];
+    viewController.navigationItem.title = @"title 标题";
+    viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"文字按钮" style:UIBarButtonItemStyleDone target:self action:nil];
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+}
 
 @end
