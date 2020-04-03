@@ -1,7 +1,7 @@
 #import "SceneDelegate.h"
 #import "ViewController.h"
 
-@interface SceneDelegate ()
+@interface SceneDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -52,10 +52,18 @@
     
     [tabbarController setViewControllers: @[navigationController,controller2,controller3,controller4]];
     
+    // delegate 是在当前class 类执行的
+    tabbarController.delegate = self;
+    
     
     self.window.rootViewController = tabbarController;
     
     [self.window makeKeyAndVisible];
+}
+
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    NSLog(@"did select tab bar controller");
 }
 
 
