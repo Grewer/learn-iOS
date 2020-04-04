@@ -24,10 +24,9 @@
     
     ViewController *viewControl = [[ViewController alloc] init];
     
+    
+    // 可跳转的页面控制器
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewControl];
-    
-    
-    
     
 //    UIViewController *controller1 = [[UIViewController alloc] init];
 //    controller1.view.backgroundColor = [UIColor redColor];
@@ -40,6 +39,7 @@
     UIViewController *controller2 = [[UIViewController alloc] init];
     controller2.view.backgroundColor = [UIColor yellowColor];
     controller2.tabBarItem.title = @"zhang2";
+
     
     UIViewController *controller3 = [[UIViewController alloc] init];
     controller3.view.backgroundColor = [UIColor greenColor];
@@ -63,7 +63,8 @@
 
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
-    NSLog(@"did select tab bar controller");
+    NSLog(@"did select tab bar controller %lu",(unsigned long)tabBarController.selectedIndex);
+    
 }
 
 

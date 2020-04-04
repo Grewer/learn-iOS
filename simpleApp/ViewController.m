@@ -38,7 +38,7 @@
 
 @end
 
-@interface ViewController ()
+@interface ViewController ()<UITableViewDataSource>
 
 @end
 
@@ -59,24 +59,52 @@
     
     TestView *view = [[TestView alloc] init];
     view.backgroundColor = [UIColor grayColor];
-    // frame 表示位置
-    view.frame = CGRectMake(100,200,300,400);
-    [self.view addSubview:view];
     
+    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushController)];
+    tableView.dataSource = self;
     
-    [view addGestureRecognizer:tapGesture];
+    [self.view addSubview:tableView];
+    
+//    // frame 表示位置
+//    view.frame = CGRectMake(100,200,300,400);
+//    [self.view addSubview:view];
+//
+//
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushController)];
+//
+//    [view addGestureRecognizer:tapGesture];
 
 }
 
--(void)pushController{
-    UIViewController *viewController = [[UIViewController alloc] init];
-    viewController.view.backgroundColor = [UIColor whiteColor];
-    viewController.navigationItem.title = @"title 标题";
-    viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"文字按钮" style:UIBarButtonItemStyleDone target:self action:nil];
-    
-    [self.navigationController pushViewController:viewController animated:YES];
+//-(void)pushController{
+//    // 点击跳转一个新页面
+//    UIViewController *viewController = [[UIViewController alloc] init];
+//    viewController.view.backgroundColor = [UIColor whiteColor];
+//    viewController.navigationItem.title = @"title 标题";
+//    viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"文字按钮" style:UIBarButtonItemStyleDone target:self action:nil];
+//
+//    [self.navigationController pushViewController:viewController animated:YES];
+//}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 20;
 }
+
+// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"cus id"];
+    
+    cell.textLabel.text = @"主标题";
+    cell.detailTextLabel.text = @"副标题";
+//    cell.imageView.image = [UIImage imageNamed:@"images/play.png"]; // 在 images 文件中
+    cell.imageView.image = [UIImage imageNamed:@"image1"];// 在 assets.xcassets 中
+    
+    
+    return cell;
+}
+
 
 @end
